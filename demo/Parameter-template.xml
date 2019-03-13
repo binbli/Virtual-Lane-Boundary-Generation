@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+    <LaneMarkAssessor precision="0.05"/>
+    <Solvers>
+        <RoadSegment>
+            <!--
+            dataRoot 	      = directory from which relative paths to images are given in dataFile
+            dataFile 	      = file listing relative paths of images to test
+            saveVizImg	    = true if overlaid images are desired
+            vizImgPrefix    = prefix name for saved image
+            segImgPrefix    = prefix put before the name of segmented image
+            overlayedRoot   = directory where overlaid images would be stored
+            -->
+            <SolverInstance
+                    dataRoot="demo/data/$f1/$f0/$f1/image_02/data/"
+                    dataFile="demo/data/$f1/seq.txt"
+                    segRoot="demo/data/$f1/output/Images/segment_img/"
+                    saveVizImg="true"
+                    vizImgPrefix="overlayed_"
+                    segImgPrefix="segmented_"
+                    overlayedRoot="demo/data/$f1/output/Images/overlayed_img/"
+            />
+        </RoadSegment>
+        <LMsfromCam>
+            <!-- k = percent of pixels to label as lanes -->
+            <KPercentExtractor
+                    kpercent="8"
+                    dilateSize="3"
+            />
+            <!-- dataRoot 	    = directory from which relative paths to images are given in dataFile
+             dataFile 	        = file listing relative paths of images to test
+             segRoot 	          = directory where binary segmented images are stored
+             refinedRoot        = directory where refined and overlaid images should be stored
+             saveVizImg	  	    = true if overlaid images are desired
+             vizImgPrefix	      = prefix put before the name of overlaid image
+             refinedImgPrefix   = prefix put before the name of refined image -->
+            <SolverInstance
+                    dataRoot="demo/data/$f1/$f0/$f1/image_02/data/"
+                    dataFile="demo/data/$f1/seq.txt"
+                    segRoot="demo/data/$f1/output/Images/segment_img/"
+                    refinedRoot="demo/data/$f1/output/Images/lane_from_img/"
+                    OverlayRoot="demo/data/$f1/output/Images/overlayed_img/"
+                    roadbRoot="demo/data/$f1/output/Images/roadBoundary_img"
+                    saveVizImg="true"
+                    vizImgPrefix="Overlayed_"
+                    refinedImgPrefix="thredholded_"
+             />
+        </LMsfromCam>
+        <VeloPtsProjectCam>
+            <!-- segRoot 	      = directory where segmented images are stored
+             maxWidth 	        = points with |y| <= |maxWidth| would only be considered (y is defined with respect to the lidar frame of reference)
+             maxWidth 	        = points with |x| <= |maxLength| would only be considered (x is defined with respect to the lidar frame of reference)
+             refinedRoot	      = directory where refined images are stored
+             refImgPrefix	      = prefix before all refined images
+             segImgPrefix	      = prefix before all segmented images
+             outputFile		      = file where all points that lie in the intersection would be stored
+             saveVizImg 	      = true if image which has circles at all intersected points is needed
+             vizImgPrefix       = prefix before the visualization image (one with circles)
+             printOnly2D	      = true if only x and y coordinates (lidar space) must be printed in file
+             dThrehold          = distance threshold value for ransac
+             nIter              = maximum iteration for ransac
+            -->
+            <LMintersection
+                    segRoot="demo/data/$f1/output/Images/segment_img/"
+                    maxWidth="3"
+                    maxLength="20"
+                    refinedRoot="demo/data/$f1/output/Images/lane_from_img/"
+                    roadbRoot="demo/data/$f1/output/Images/roadBoundary_img"
+                    CurbRTRoot="demo/data/$f1/output/Lidar/curbsRT/"
+                    refImgPrefix="thredholded_"
+                    segImgPrefix="segmented_"
+                    roadBoundPrefix="Roadboundary_"
+                    outputFile="intersected3DPts_"
+                    CurbRTOutFile="CurbRTOutFile_"
+                    saveVizImg="true"
+                    vizImgPrefix="intersected_"
+                    printOnly2D="false"
+                    dThrehold="0.05"
+                    nIter="2000"
+                    percentInliers = "0.8"
+                    minSamples="8"
+                    radius="0.18"
+                    height = "0.1"
+                    curbH="0.2"
+                    surfCurvePara="0.15"
+            />
+
+            <!-- segRoot 	      = directory where segmented images are stored
+             segImgPrefix	      = prefix before all segmented images
+             outputFilePrefix   = prefix before all output files
+             saveVizImg 	      = true if image which has circles at all intersected points is needed
+             vizImgPrefix       = prefix before the visualization image (one with circles)
+             printProjectedPts  = true if points are to be printed after projecting to image space
+             minPoints		      = minimum number of points to be there for an entry to go in file
+             printProjectedPts  = true if print the points in file
+             -->
+            <SurfaceDataMaker
+                    segRoot="demo/data/$f1/output/Images/segment_img/"
+                    segImgPrefix="segmented_"
+                    dataFile="demo/data/$f1/seq.txt"
+                    outputFilePrefix="lidarRoad2DPts_"
+                    saveVizImg="false"
+                    vizImgPrefix="lidar_"
+                    minPoints="15"
+                    printProjectedPts="true"
+            />
+
+            <!-- dataRoot 	    = directory from which relative paths to images are given in dataFile
+             dataFile 	        = file listing relative paths of images to test
+             veloRoot 	        = directory where .bin files are stored containing Lidar points
+             calibRoot          = directory where calibration files are stored
+             outputRoot	  	    = directory where any output should be stored
+             retentionFrequency = only 1 of every retentionFrequency number of lidar points would be considered
+             camNum 	          = the camera number used (0,1,2,3)
+             minX			          = the minimum x coordinate a Lidar point must have to be considered to lie on the image -->
+            <LidarImageProjector saveVizImg="true" vizImgPrefix="avg_" maxDist="5"/>
+            <LaneQualityChecker dx="20.0" dy="3.0"/>
+            <SolverInstance
+                    dataRoot="demo/data/$f1/$f0/$f1/image_02/data/"
+                    dataFile="demo/data/$f1/seq.txt"
+                    veloRoot="demo/data/$f1/$f0/$f1/velodyne_points/data/"
+                    calibRoot="demo/calib/$f1_calib/"
+                    outputRoot="demo/data/$f1/output/Images/intersect_img_lidar"
+                    retentionFrequency="2"
+                    camNum="2"
+                    minX="5"
+            />
+        </VeloPtsProjectCam>
+
+        <TLinkage>
+            <Samplers maxIterationsFactor="10" maxTries="3">
+                <Uniform/>
+                <!-- sigma 	   	    = an implementation detail (should be good at 5)
+                 maxDiff 	          = maximum difference to tolerate while sampling (in m or degrees)
+                 measurementWay     = way to measure "distance"
+                                     AbsVerticalDegree if the angle with respect to y axis is measured between points
+                                    Euclidean if simple geometric distance is supposed to be measured-->
+                <DistBased sigma="3" maxDiff="60" measurementWay="AbsVerticalDegree" shouldXUnique="true"/>
+            </Samplers>
+
+            <Models>
+                <!-- minShift       = minimum distance to push a line by when finding parallel line on other side
+                     maxShift       = maximum distance to push a line by when finding parallel line on other side
+                     resolution     = distance by which each increment happens
+                     errorThreshold = the maximum average least square distance from all points in a cluster to the parallel line constructed
+                -->
+                <Line3D minShift="2.7" maxShift="5" resolution="0.025" errorThreshold="1"/>
+                <BSpline minSamples="8" regularizationConst="1" resolution="0.2" minX="5" maxX="20"/>
+            </Models>
+
+            <!-- inlierThreshold = maximum distance between a model and a sample that fits the model-->
+            <PreferenceFinders inlierThreshold="0.5">
+                <Exp divFactor="5"/>
+                <Hard/>
+                <Gauss divFactor="4"/>
+                <Tukey/>
+            </PreferenceFinders>
+
+            <OutlierRejectors>
+                <MaxSizeChange/>
+                <KLargest k="2"/>
+            </OutlierRejectors>
+            <!--
+                 dataFile = file that lists all points
+                 shouldTranspose = true if colums in dataFile = number of dimensions of points
+                 modelFile = file which would store all model parameters
+                 saveClusters = true if clusters should be saved
+                 clusterFile  = file which would store all clusters
+                 preferenceFinder = name of preference finder (any child of PreferenceFinders node)
+                 sampler = name of sampler to use (any child of Samplers node (for DistBased, use PreferNear as its name)
+                 outlierRejector = name of outlier rejector (None or any child of OutlierRejectors node)
+                 samplesPerDataPt = total samples generated would samplesPerDataPt * data points
+                 minShift = minimum distance to shift the model
+                 maxShift = maximum distance to shift the model
+                 shiftIncrement = distance interval to shift the model
+                 errorThreshold = threshold setting for T-linkage
+                 -->
+            <SolverInstance
+                    dataFile="demo/data/$f1/seq.txt"
+                    LMsFile="demo/data/$f1/output/Images/intersect_img_lidar/intersected3DPts_"
+                    shouldTranspose="true"
+                    LBmodelFile="demo/data/$f1/output/Lidar/SplineModel/spline3DModels_"
+                    saveClusters="true"
+                    clusterFile="demo/data/$f1/output/Lidar/SplineCluster/spline3DClusters_"
+                    preferenceFinder="Exp"
+                    sampler="PreferNear"
+                    outlierRejector="None"
+                    samplesPerDataPt="5"
+                    minShift="2.7"
+                    maxShift="5"
+                    shiftIncrement="0.05"
+                    errorThreshold="1"
+                    laneStatsTrackCount="3"
+                    laneCenterWidth="1.8"
+            />
+        </TLinkage>
+
+        <!-- dataFile = directory from which relative paths are listed in imgFile
+            CurbRTRoot = directory to the road edge point set
+            CurbRTOutFile = road edge point file name
+            centerLaneModel = directory to the center lane model
+            gpsimudir = directory to the gps imu data path
+            minSamples = number of control points for the spline curve
+            minX = points with x > minX would only be considered (y is defined with respect to the lidar frame of reference)
+            minX = points with x < minX would only be considered (y is defined with respect to the lidar frame of reference)
+            shouldTranspose = true if colums in dataFile = number of dimensions of points
+            carWidth = the width of the car to avoid collision with the obstacles
+            vioFile = the rotation and translation matrix output from SLAM code
+            splineModelsFile = the lb model file
+            ctrlLBPtsFile = the control points file for the LBs
+            ctrlCenterPtsFile = the control points file for the LCC
+             -->
+        <MapGenerator>
+            <SolverInstance
+                    dataRoot="demo/data/$f1/$f0/$f1/image_02/data/"
+                    saveVizImg="true"
+                    dataFile="demo/data/$f1/seq.txt"
+                    CurbRTRoot="demo/data/$f1/output/Lidar/curbsRT/"
+                    CurbRTinFile="CurbRTOutFile_"
+                    gpsimudir="demo/data/$f1/$f0/$f1/oxts/data/"
+                    mapgpsdir = "demo/data/$f1/priorMap.txt"
+                    minSamples="15"
+                    minX="5"
+                    maxX="15"
+                    NumfCurves="11"
+                    steplen = "0.01"
+                    shouldTranspose="false"
+                    carWidth="0.9"
+                    LCC2orign = "0.35"
+                    laneCenterWidth="1.6"
+                    InterSectionTrigger = "5"
+                    IntersectionLen = "6"
+                    IntersecGPSample = "10"
+                    maxAngle = "45"
+                    minAngle = "-45"
+                    TargetAngleDiff = "10"
+                    weightfs = "1"
+                    weightfo = "1"
+                    weightfg = "2"
+                    weightfc = "0.1"
+                    weightfa = "5"
+                    vioFile="demo/data/$f1/vio.txt"
+                    costFile = "emo/data/$f1/output/Lanes/cost.txt"
+                    splineModelsFile="demo/data/$f1/output/Lidar/SplineModel/spline3DModels_"
+                    centerCtrlPtsFile="demo/data/$f1/output/Lanes/worldCenterCoordinates.txt"
+                    leftCtrlPtsFile="demo/data/$f1/output/Lanes/worldLeftCoordinates.txt"
+                    rightCtrlPtsFile="demo/data/$f1/output/Lanes/worldRightCoordinates.txt"
+                    startAngleThreshold="30"
+                    UpperElevation="0.1"
+                    vizImgPrefix="demo/data/$f1/output/Images/splineLane/spline_"
+            />
+        </MapGenerator>
+
+        <!-- imgRoot = directory from which relative paths are listed in imgFile
+             imgFile = file that stores all relative paths to images
+             veloRoot = directory which stores all bin files containing Lidar points
+             ratioFile = directory which store the metrics related to lane quality
+             saveVizImg = true if the spine lane model is diplayed on image
+             lassAsses  = true if the program runs at lane quality assessment mode
+             vizImgPrefix = directory where the spline lane image is saved
+        -->
+        <LaneDetector
+                dataRoot="demo/data/$f1/$f0/$f1/image_02/data/"
+                dataFile="demo/data/$f1/seq.txt"
+                veloRoot="demo/data/$f1/$f0/$f1/velodyne_points/data/"
+                isCenterVirtual = "demo/data/$f1/output/Lanes/IsCenterVirtual.txt"
+                ratiosFile="demo/data/$f1/output/ratio.txt"
+                saveVizImg="true"
+                lassAsses="false"
+                vizImgPrefix="demo/data/$f1/output/Images/splineLane/spline_"
+        />
+    </Solvers>
+    <Main solver="LaneDetector" debug="true"/>
+</Document>
+
+<!-- Example
+<Main solver="RoadSegment" debug="true"/>
+<Main solver="KPercentExtractor" debug="true"/>
+<Main solver="LMsintersection" debug="true"/>
+<Main solver="BSplineTLinkage" debug="true"/>
+<Main solver="MapGenerator" debug="true"/>
+<Main solver="LaneDetector" debug="true"/>
+-->

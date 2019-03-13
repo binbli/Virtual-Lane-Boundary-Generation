@@ -1,0 +1,272 @@
+diff -Narc1 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/model_predictive_trajectory_generator.py 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/model_predictive_trajectory_generator.py
+*** 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/model_predictive_trajectory_generator.py	2018-12-28 08:07:18.000000000 -0600
+--- 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/model_predictive_trajectory_generator.py	2019-02-11 22:49:45.000000000 -0600
+***************
+*** 15,17 ****
+  max_iter = 100
+! h = np.array([0.5, 0.02, 0.02]).T  # parameter sampling distance
+  cost_th = 0.1
+--- 15,17 ----
+  max_iter = 100
+! h = np.array([0.5, 0.04, 0.04]).T  # parameter sampling distance
+  cost_th = 0.1
+***************
+*** 110,112 ****
+          if cost <= cost_th:
+!             print("path is ok cost is:" + str(cost))
+              break
+--- 110,112 ----
+          if cost <= cost_th:
+!             #print("path is ok cost is:" + str(cost))
+              break
+***************
+*** 117,119 ****
+          except np.linalg.linalg.LinAlgError:
+!             print("cannot calc path LinAlgError")
+              xc, yc, yawc, p = None, None, None, None
+--- 117,119 ----
+          except np.linalg.linalg.LinAlgError:
+!             #print("cannot calc path LinAlgError")
+              xc, yc, yawc, p = None, None, None, None
+***************
+*** 129,131 ****
+          xc, yc, yawc, p = None, None, None, None
+!         print("cannot calc path")
+  
+--- 129,131 ----
+          xc, yc, yawc, p = None, None, None, None
+!         #print("cannot calc path")
+  
+diff -Narc1 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/motion_model.py 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/motion_model.py
+*** 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/motion_model.py	2018-12-28 08:07:18.000000000 -0600
+--- 3rdParty/PythonRobotics/PathPlanning/ModelPredictiveTrajectoryGenerator/motion_model.py	2019-01-31 21:24:30.000000000 -0600
+***************
+*** 6,9 ****
+  L = 1.0  # wheel base
+! ds = 0.1  # course distanse
+! v = 10.0 / 3.6  # velocity [m/s]
+  
+--- 6,10 ----
+  L = 1.0  # wheel base
+! ds = 0.5  # course distanse
+! #v = 10.0 / 3.6  # velocity [m/s]
+! v = 12
+  
+***************
+*** 38,40 ****
+      time = s / v  # [s]
+!     tk = np.array([0.0, time / 2.0, time])
+      kk = np.array([k0, km, kf])
+--- 39,44 ----
+      time = s / v  # [s]
+!     if type(time) is np.ndarray:
+!         tk = np.array([0.0, time[0] / 2.0, time[0]])
+!     else:
+!         tk = np.array([0.0, time/2.0, time])
+      kk = np.array([k0, km, kf])
+***************
+*** 64,66 ****
+      time = s / v  # [s]
+!     tk = np.array([0.0, time / 2.0, time])
+      kk = np.array([k0, km, kf])
+--- 68,73 ----
+      time = s / v  # [s]
+!     if type(time) is np.ndarray:
+!         tk = np.array([0.0, time[0] / 2.0, time[0]])
+!     else:
+!         tk = np.array([0.0, time/2.0, time])
+      kk = np.array([k0, km, kf])
+diff -Narc1 3rdParty/PythonRobotics/PathPlanning/StateLatticePlanner/state_lattice_planner.py 3rdParty/PythonRobotics/PathPlanning/StateLatticePlanner/state_lattice_planner.py
+*** 3rdParty/PythonRobotics/PathPlanning/StateLatticePlanner/state_lattice_planner.py	2018-12-28 08:07:18.000000000 -0600
+--- 3rdParty/PythonRobotics/PathPlanning/StateLatticePlanner/state_lattice_planner.py	2019-02-21 23:15:33.367354118 -0600
+***************
+*** 10,12 ****
+  sys.path.append("../ModelPredictiveTrajectoryGenerator")
+- 
+  from matplotlib import pyplot as plt
+--- 10,11 ----
+***************
+*** 17,18 ****
+--- 16,19 ----
+  import motion_model
++ import os # add by bbl
++ import os.path # add by bbl
+  
+***************
+*** 20,22 ****
+  
+! show_animation = True
+  
+--- 21,23 ----
+  
+! show_animation = False
+  
+***************
+*** 62,64 ****
+          if x is not None:
+!             print("find good path")
+              result.append(
+--- 63,65 ----
+          if x is not None:
+!             #print("find good path")
+              result.append(
+***************
+*** 66,68 ****
+  
+!     print("finish path generation")
+      return result
+--- 67,69 ----
+  
+!     #print("finish path generation")
+      return result
+***************
+*** 258,270 ****
+  
+! def biased_terminal_state_sampling_test2():
+!     k0 = 0.0
+!     nxy = 30
+!     nh = 1
+!     d = 20
+!     a_min = np.deg2rad(0.0)
+!     a_max = np.deg2rad(45.0)
+!     p_min = - np.deg2rad(20.0)
+!     p_max = np.deg2rad(20.0)
+!     ns = 100
+!     goal_angle = np.deg2rad(30.0)
+      states = calc_biased_polar_states(
+--- 259,295 ----
+  
+! def biased_terminal_state_sampling_test2(LatticeParameter):
+!     # k0: radian angle with x-axis;
+!     # nxy: number of curves
+!     # nh: number of heading sampleing
+!     # a_min: position sampling min angle
+!     # a_max: position sampling max angle
+!     # p_min: heading sampling min angle
+!     # p_max: heading sampling max angle
+!     # ns: number of biased sampling
+!     # goal_angle: goal orientation for biased sampling\
+!     # k0 = 0.0 # turning angle
+!     # nxy = 13
+!     # nh = 1
+!     # d = 20 # curve distance
+!     # goal_angle = -0.0012
+!     # a_min = np.deg2rad(-90.0)
+!     # a_max = np.deg2rad(90.0)
+!     # p_min = np.deg2rad(0.23 -5)
+!     # p_max = np.deg2rad(0.23 + 5)
+!     # ns = 100 number of biased sampling
+!     # goal_angle = np.deg2rad(0.23)
+! 
+! 
+!     LatticeParameter = LatticeParameter.tolist()
+!     k0 = LatticeParameter[0]
+!     nxy = int(LatticeParameter[1])
+!     nh = int(LatticeParameter[2])
+!     d = int(LatticeParameter[3])
+!     a_min = np.deg2rad(LatticeParameter[4])
+!     a_max = np.deg2rad(LatticeParameter[5])
+!     p_min = - np.deg2rad(LatticeParameter[6])
+!     p_max = np.deg2rad(LatticeParameter[7])
+!     ns = int(LatticeParameter[8])
+!     goal_angle = np.deg2rad(LatticeParameter[9])
+! 
+      states = calc_biased_polar_states(
+***************
+*** 272,274 ****
+      result = generate_path(states, k0)
+! 
+      for table in result:
+--- 297,301 ----
+      result = generate_path(states, k0)
+!     curvex = []
+!     curvey = []
+!     biased_terminal_state_sampling_test2.index = 0
+      for table in result:
+***************
+*** 276,277 ****
+--- 303,307 ----
+              table[3], table[4], table[5], k0)
++         biased_terminal_state_sampling_test2.index += 1
++         curvex += xc
++         curvey += yc
+  
+***************
+*** 285,296 ****
+  
+  
+! def lane_state_sampling_test1():
+!     k0 = 0.0
+  
+!     l_center = 10.0
+!     l_heading = np.deg2rad(90.0)
+!     l_width = 3.0
+!     v_width = 1.0
+!     d = 10
+!     nxy = 5
+      states = calc_lane_states(l_center, l_heading, l_width, v_width, d, nxy)
+--- 315,329 ----
+  
++     return [curvex, curvey]
+  
+! def number_of_curves():
+!     return biased_terminal_state_sampling_test2.index
+  
+! def lane_state_sampling_test1():
+!     k0 = 0.0 # curvature constraint
+!     l_center = 10.0 # y coordinate - goal state
+!     d = 10  # x coordinate - goal state
+!     l_heading = np.deg2rad(0.0) # goal state heading angle
+!     l_width = 3.7
+!     v_width = 2.6
+!     nxy = 5 # number of lane center curve
+      states = calc_lane_states(l_center, l_heading, l_width, v_width, d, nxy)
+***************
+*** 298,305 ****
+  
+!     for table in result:
+!         xc, yc, yawc = motion_model.generate_trajectory(
+!             table[3], table[4], table[5], k0)
+  
+!         if show_animation:
+!             plt.plot(xc, yc, "-r")
+  
+--- 331,351 ----
+  
+!     if not os.path.isfile("./robotpath.txt"):
+!         os.mknod("./robotpathxc.txt")
+!     else:
+!         os.remove("./robotpath.txt")
+!         os.mknod("./robotpath.txt")
+! 
+!     with open("./robotpath.txt", "w") as savefile:
+!         for table in result:
+!             xc, yc, yawc = motion_model.generate_trajectory(
+!                 table[3], table[4], table[5], k0)
+!             savefile.write(str(xc))
+!             savefile.write("\n")
+!             savefile.write(str(yc))
+!             savefile.write("\n")
+  
+!             if show_animation:
+!                 plt.plot(xc, yc, "-r")
+! 
+!     savefile.close()
+  
+***************
+*** 312,318 ****
+  def main():
+!     uniform_terminal_state_sampling_test1()
+!     uniform_terminal_state_sampling_test2()
+!     biased_terminal_state_sampling_test1()
+      biased_terminal_state_sampling_test2()
+!     lane_state_sampling_test1()
+  
+--- 358,364 ----
+  def main():
+!     #uniform_terminal_state_sampling_test1()
+!     #uniform_terminal_state_sampling_test2()
+!    # biased_terminal_state_sampling_test1()
+      biased_terminal_state_sampling_test2()
+!     #lane_state_sampling_test1()
+  

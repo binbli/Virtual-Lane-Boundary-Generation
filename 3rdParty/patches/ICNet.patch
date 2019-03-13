@@ -1,0 +1,32 @@
+*** 3rdParty/ICNet/PSPNet/Makefile.config.example	Fri Feb 22 03:53:09 2019
+--- 3rdParty/ICNet/PSPNet/Makefile.config	Fri Feb 22 04:16:50 2019
+***************
+*** 7,9 ****
+  # CPU-only switch (uncomment to build without GPU support).
+! # CPU_ONLY := 1
+  
+--- 7,9 ----
+  # CPU-only switch (uncomment to build without GPU support).
+!  CPU_ONLY := 1
+  
+***************
+*** 89,92 ****
+  # Whatever else you find you need goes here.
+! INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
+! LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
+  
+--- 89,92 ----
+  # Whatever else you find you need goes here.
+! INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
+! LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
+  
+*** 3rdParty/ICNet/PSPNet/include/caffe/util/interp.hpp	Fri Feb 22 03:38:38 2019
+--- 3rdParty/ICNet/PSPNet/include/caffe/util/interp.hpp	Fri Feb 22 03:39:53 2019
+***************
+*** 5,7 ****
+--- 5,9 ----
+  
++ #ifndef CPU_ONLY
+  #include <cublas_v2.h>
++ #endif
+  #include "caffe/proto/caffe.pb.h"

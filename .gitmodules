@@ -1,0 +1,3 @@
+[submodule "3rdParty/ICNet"]
+	path = 3rdParty/ICNet
+	url = https://github.com/hszhao/ICNet.git

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Evalutionproject"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\3rdParty\;CMake Files\3rdParty\ICNet\;CMake Files\3rdParty\ICNet\PSPNet\;CMake Files\3rdParty\ICNet\PSPNet\cmake\;CMake Files\3rdParty\ICNet\PSPNet\cmake\Modules\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\..\usr\lib\cmake\eigen3\;CMake Files\..\..\..\..\..\usr\share\;CMake Files\..\..\..\..\..\usr\share\OpenCV\;CMake Files\cmake-modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/binbin/disk/project-code/vlbs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/binbin/disk/project-code/vlbs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LDRT">
+				<Option output="/home/binbin/disk/project-code/vlbs/LDRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="../"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCAFFE_VERSION=1.0.0-rc3"/>
+					<Add option="-DUSE_OPENCV"/>
+					<Add option="-DUSE_LEVELDB"/>
+					<Add option="-DUSE_LMDB"/>
+					<Add option="-DCPU_ONLY"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/hdf5/serial"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/libalglib"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/python3.5"/>
+					<Add directory="/usr/include/python3.5m"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/ICNet/PSPNet/include"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/ICNet/PSPNet/build/src"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/LSD"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/DBScan"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 LDRT"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LDRT/fast">
+				<Option output="/home/binbin/disk/project-code/vlbs/LDRT" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="../"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DCAFFE_VERSION=1.0.0-rc3"/>
+					<Add option="-DUSE_OPENCV"/>
+					<Add option="-DUSE_LEVELDB"/>
+					<Add option="-DUSE_LMDB"/>
+					<Add option="-DCPU_ONLY"/>
+					<Add directory="/usr/include/opencv"/>
+					<Add directory="/usr/include/hdf5/serial"/>
+					<Add directory="/usr/include/eigen3"/>
+					<Add directory="/usr/include/libalglib"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/python3.5"/>
+					<Add directory="/usr/include/python3.5m"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/ICNet/PSPNet/include"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/ICNet/PSPNet/build/src"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/LSD"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/3rdParty/DBScan"/>
+					<Add directory="/home/binbin/disk/project-code/vlbs/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 LDRT/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/binbin/disk/project-code/vlbs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/binbin/disk/project-code/vlbs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/DBScan/DBScan.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/DBScan/DBScan.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/LSD/LSDLines.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/LSD/LSDLines.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/BSplineTLinkage.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/BSplineTLinkage.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/DistBasedSampler.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/DistBasedSampler.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/KLargestOR.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/KLargestOR.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/MaxDiffOR.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/MaxDiffOR.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/TLinkage.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/TLinkage.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/UniformSampler.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/TLinkage/UniformSampler.h">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/KPercentExtractor.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/LMsfromCam.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/LMsintersection.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/LaneDetector.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/LaneMarkAssessor.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/LaneQualityChecker.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/MapGenerator.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/PointsVisualizer.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/RoadSegment.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/SurfaceDataMaker.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/Utilities.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/VeloPtsProjectCam.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/src/main.cpp">
+			<Option target="LDRT"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/3rdParty/ICNet/PSPNet/cmake/Modules/FindGlog.cmake">
+			<Option virtualFolder="CMake Files\3rdParty\ICNet\PSPNet\cmake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/../../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/../../../../../usr/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/../../../../../usr/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/../../../../../usr/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/../../../../../usr/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/cmake-modules/FindALGLIB.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+		<Unit filename="/home/binbin/disk/project-code/vlbs/cmake-modules/FindPugiXML.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

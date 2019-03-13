@@ -1,0 +1,13 @@
+/snap/clion/61/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/binbin/disk/project-code/vlbs
+-- HDF5: Using hdf5 compiler wrapper to determine C configuration
+-- Found glog    (include: /usr/include, library: /usr/lib/x86_64-linux-gnu/libglog.so)
+-- PugiXML include = /usr/local/include
+-- PugiXML library = /usr/local/lib/libpugixml.a
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   regex
+--   system
+--   filesystem
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/binbin/disk/project-code/vlbs/cmake-build-debug
