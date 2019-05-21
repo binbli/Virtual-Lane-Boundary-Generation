@@ -1,4 +1,4 @@
-## Camera-LIDAR Bimodal Lane Detection, Recognition and Tracking
+## Virtual Lane Boundary Generation for Human-Compatible Autonomous Driving: A Tight Coupling between Perception and Planning
 
 ## License
 
