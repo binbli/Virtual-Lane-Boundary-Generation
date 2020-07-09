@@ -4,15 +4,22 @@
 
 Our code is released under a [GPLv3 license](http://telerobot.cs.tamu.edu/lane/). In this code, we aim to recognize, generate and track virtual lane boundaries to help navigate autonomous vehicles in urban scenarios. It has been tested on Ubuntu 16.04LTS and should work on 16.04 or newer versions. We extend our previous work in
 
-    @INPROCEEDINGS{li2018lane, 
-        author={B. {Li} and D. {Song} and H. {Li} and A. {Pike} and P. {Carlson}}, 
-        booktitle={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
-        title={Lane Marking Quality Assessment for Autonomous Driving}, 
-        year={2018}, 
-        pages={1-9}, 
-        doi={10.1109/IROS.2018.8593855}, 
-        ISSN={2153-0866}, 
-        month={Oct}
+    @INPROCEEDINGS{li2019virtual,
+      title={Virtual Lane Boundary Generation for Human-Compatible Autonomous Driving: A Tight Coupling between Perception and Planning},
+      author={Li, Binbin and Song, Dezhen and Ramchandani, Ankit and Cheng, Hsin-Min and Wang, Di and Xu, Yiliang and Chen, Baifan},
+      booktitle={2019 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+      pages={3733--3739},
+      year={2019},
+      organization={IEEE}
+    }
+
+    @inproceedings{li2018lane,
+      title={Lane marking quality assessment for autonomous driving},
+      author={Li, Binbin and Song, Dezhen and Li, Haifeng and Pike, Adam and Carlson, Paul},
+      booktitle={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+      pages={1--9},
+      year={2018},
+      organization={IEEE}
     }
     
 If you use our code in an academic work, please cite the aforementioned paper.
